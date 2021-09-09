@@ -1,0 +1,24 @@
+version: '3'
+services:
+
+  # https://hub.docker.com/_/caddy
+  # https://caddyserver.com/docs/quick-starts/reverse-proxy
+  # Running Caddy as command
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    command: caddy run -config /etc/caddy/Caddyfile
+    environment:
+      ACME_AGREE: "true"
+    network_mode: host
+    volumes:
+      - $PWD:./Caddyfile:/etc/caddy/Caddyfile
+#      - $PWD/site:/srv
+      - $PWD/data:/data
+      - $PWD/data/config:/config
+
+

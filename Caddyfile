@@ -1,0 +1,23 @@
+http://tradingstrategy.com/docs {
+
+    # Proxied from Netlify
+    # reverse_proxy 127.0.0.1:3000
+
+    log {
+        output stdout
+        format console
+    }
+}
+
+http://tradingstrategy.com {
+
+    # SvelteKit production server from frontend repository
+    reverse_proxy 127.0.0.1:3000
+
+    log {
+        output stdout
+        format console
+    }
+}
+
+
