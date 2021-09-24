@@ -43,7 +43,7 @@ http://tradingstrategy.ai {
 }
 
 
-
+# Server for oracle data
 http://candlelightdinner.tradingstrategy.ai {
 
     reverse_proxy 127.0.0.1:6543 {
@@ -56,4 +56,17 @@ http://candlelightdinner.tradingstrategy.ai {
     }
 }
 
+# Server for web backend
+# https://docs.pylonsproject.org/projects/waitress/en/latest/reverse-proxy.html
+http://matilda.tradingstrategy.ai {
 
+    reverse_proxy 127.0.0.1:3456 {
+        header_up X-Real-IP {remote_host}
+        header_upstream X-Forwarded-Proto https
+    }
+
+    log {
+        output stdout
+        format console
+    }
+}
