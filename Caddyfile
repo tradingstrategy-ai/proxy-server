@@ -13,6 +13,14 @@
 
 http://tradingstrategy.ai {
 
+    # Backend API rquest
+    # Handled by Matilda (see below)
+    handle /api* {
+        reverse_proxy 127.0.0.1:3456 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     # Serve docs produced by client repo Github Actions
     # from Netlify server
     handle /docs* {
@@ -62,7 +70,7 @@ http://matilda.tradingstrategy.ai {
 
     reverse_proxy 127.0.0.1:3456 {
         header_up X-Real-IP {remote_host}
-        header_upstream X-Forwarded-Proto https
+        # header_upstream X-Forwarded-Proto https
     }
 
     log {
