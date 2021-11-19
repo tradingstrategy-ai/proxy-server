@@ -51,6 +51,58 @@ http://tradingstrategy.ai {
 }
 
 
+#
+# Staging server.
+#
+# Pushed from a specific branch.
+#
+# Backend - Python Waitress: 127.0.0.1:4567
+# Frontend - SvelteKit node.js adapter: 4000
+# Run in tmux on the server
+#
+# Protected by HTTP Basic Auth, so that the website is not picked up by robots.
+# The password is not super secret.
+#
+http://pinky.tradingstrategy.ai {
+
+    # Staging Backend API requests
+    # Handled by Matilda (see below)
+    handle /api* {
+        reverse_proxy 127.0.0.1:4567 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    # Docs not available staging
+    #handle /docs* {
+    #    reverse_proxy https://boring-poitras-17190b.netlify.app {
+    #        header_up Host boring-poitras-17190b.netlify.app
+    #    }
+    #}
+
+    # SvelteKit production server from frontend repository
+    handle {
+
+        # Protect with password to prevent the server ending up in the Google index.
+        # The password is angrybird, generated with cadddy hash-password.
+        # This is mostly protecting against indexing.
+        # https://caddyserver.com/docs/caddyfile/directives/basicauth
+        basicauth {
+	        pinky JDJhJDE0JFFpeTFyWHdKSkhwQzBsQkk3TGhkNnVEQW1WcnkzclhzTlJlaWVQMnpLVkxyNVh5Q1pIanIu
+        }
+        reverse_proxy 127.0.0.1:4000 {
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    log {
+        output stdout
+        format console
+    }
+
+}
+
+
 # Server for oracle data
 http://candlelightdinner.tradingstrategy.ai {
 
@@ -71,6 +123,19 @@ http://matilda.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:3456 {
         header_up X-Real-IP {remote_host}
         # header_upstream X-Forwarded-Proto https
+    }
+
+    log {
+        output stdout
+        format console
+    }
+}
+
+
+# Integration test bacjebd server
+http://steve.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:3457 {
+        header_up X-Real-IP {remote_host}
     }
 
     log {
