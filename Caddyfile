@@ -11,6 +11,12 @@
     email no-reply@tradingstrategy.ai
 }
 
+#
+# Production frontend and backend and docs
+#
+# PYramid backend API server is localhost:3456
+# SvelteKit Node.js frontend SSR server is localhost:3000
+#
 http://tradingstrategy.ai {
 
     # Backend API rquest
