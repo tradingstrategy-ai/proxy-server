@@ -2,8 +2,10 @@
 
 FROM caddy:builder AS builder
 
+# Add Datadog plugin: https://github.com/payintech/caddy-datadog
 RUN caddy-builder \
-    github.com/caddy-dns/cloudflare
+    github.com/caddy-dns/cloudflare \
+    github.com/payintech/caddy-datadog
 
 FROM caddy:latest
 

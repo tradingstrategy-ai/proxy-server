@@ -2,9 +2,9 @@ This is the HTTPS reserve proxy configuration for https://tradingstrategy.ai for
 
 We use special `Dockerimage` to build support for
 
-* [Cloudflare extension](https://github.com/caddy-dns/cloudflare)
+* [Cloudflare plugin](https://github.com/caddy-dns/cloudflare)
 
-* [IP Filter extension](https://github.com/devangels/caddy-ipfilter)
+* [Datadog plugin](https://github.com/payintech/caddy-datadog)
 
 We source the website frontend from multiple servers and make them available in the same domain, same path structure, using Caddy.
 
@@ -21,7 +21,7 @@ The purpose of this setup is search engine optimisations and better UX.
 * The web server is configured to ignore traffic that is not from Cloudflare edge servers, 
   to make it easier to manage malicious traffic
 
- ## Running
+# Running
 
 AT this will bind all 80 on the Docker host. HTTPS traffic is terminated by Cloudflare. 
 
@@ -34,10 +34,29 @@ This will a start container `caddy` that terminates all [tradingstrategy.ai](htt
 This setup does not have any development testing - all changes to tweak URL configuration must be done directly on the production server.
 You need to have `tradingstrategy.ai` override in `/etc/hosts` to test.
 
-## Testing
+# Testing
 
 Check URls:
 
 - https://tradingstrategy.ai
 - https://candlelightdinner.tradingstrategy.ai
 - https://matilda.tradingstrategy.ai
+
+# Building and development
+
+Build Caddy inside Docker with:
+
+```shell
+docker build
+```
+
+## Checking Dogstatd connectiong
+
+Use `nc` command for UDP connections. 
+
+```shell
+nc -u 127.0.0.1 8125
+```
+
+Write some crap to the port and see that it is not being closed by `nc`.
+
