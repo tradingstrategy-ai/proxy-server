@@ -19,11 +19,14 @@
 #
 http://tradingstrategy.ai {
 
-    # Backend API rquest
-    # Handled by Matilda (see below)
+    # Backend API request
     handle /api* {
+        # This is the upstream Waitress server
         reverse_proxy 127.0.0.1:3456 {
-            header_up X-Real-IP {remote_host}
+            # Backend API must respond to an individual API call under 20 seconds
+            transport http {
+                response_header_timeout 20s
+            }
         }
     }
 
@@ -38,7 +41,10 @@ http://tradingstrategy.ai {
     # SvelteKit production server from frontend repository
     handle {
         reverse_proxy 127.0.0.1:3000 {
-            header_up X-Real-IP {remote_host}
+            # Frontend must render the page under 20 seconds
+            transport http {
+                response_header_timeout 20s
+            }
         }
     }
 
