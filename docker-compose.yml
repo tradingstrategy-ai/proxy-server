@@ -1,6 +1,10 @@
+#
+# Containerised caddy.
+#
+# Note: Duet o use network_mode: host this Caddy container does not work on macOS.
+#
 version: '3'
 services:
-
   # https://hub.docker.com/_/caddy
   # https://caddyserver.com/docs/quick-starts/reverse-proxy
   # Running Caddy as command
@@ -14,6 +18,7 @@ services:
     command: caddy run -config /etc/caddy/Caddyfile
     environment:
       ACME_AGREE: "true"
+    # We directly bind to the host ports and there is no Docker network here
     network_mode: host
     volumes:
       - $PWD/Caddyfile:/etc/caddy/Caddyfile
