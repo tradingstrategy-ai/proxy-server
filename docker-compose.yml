@@ -35,7 +35,8 @@ services:
       ECS_PASSWORD: ${ECS_PASSWORD}
     network_mode: host
     volumes:
-      - $PWD/data/config/logstash/:/config-dir
+      - $PWD/logs:/logs
+      - $PWD/data/config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
     command: logstash -f /config-dir/logstash01.conf
     depends_on:
     - caddy
