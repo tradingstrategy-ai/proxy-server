@@ -26,5 +26,20 @@ services:
       - $PWD/data:/data
       - $PWD/data/config:/config
       - $PWD/index.html:/usr/share/caddy/index.html
-
-
+      - $PWD/logs:/var/log/caddy
+  logstash-logger:
+    image: logstash:7.5.2
+    environment:
+      ECS_SERVER: ${ECS_SERVER}
+      ECS_USER: ${ECS_USER}
+      ECS_PASSWORD: ${ECS_PASSWORD}
+    network_mode: host
+    volumes:
+      - $PWD/logs:/logs
+      - $PWD/data/config/logstash:/usr/share/logstash/pipeline/
+      - $PWD/data/config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - $PWD/data/lib:/var/lib/logstash
+      - $PWD/data/log:/var/log/logstash
+    command: logstash -f /config-dir/logstash01.conf
+    depends_on:
+    - caddy

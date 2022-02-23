@@ -9,6 +9,12 @@
     # This is personal preference, you can remove this if desired
     admin off
     email no-reply@tradingstrategy.ai
+
+    log {
+        output file /var/log/caddy/access.log
+        output stdout
+        format console
+    }
 }
 
 #
@@ -50,6 +56,7 @@ http://tradingstrategy.ai {
     }
 
     log {
+        output file /var/log/caddy/access.log
         output stdout
         format console
     }
