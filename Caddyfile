@@ -41,6 +41,7 @@ http://tradingstrategy.ai {
     # SvelteKit production server from frontend repository
     handle {
         reverse_proxy 127.0.0.1:3000 {
+        header_up X-Forwarded-Host {host}
             # Frontend must render the page under 20 seconds
             transport http {
                 response_header_timeout 20s
