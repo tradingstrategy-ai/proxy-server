@@ -12,8 +12,6 @@
 
     log {
         output file /var/log/caddy/access.log
-        output stdout
-        format console
     }
 }
 
@@ -54,13 +52,6 @@ http://tradingstrategy.ai {
             }
         }
     }
-
-    log {
-        output file /var/log/caddy/access.log
-        output stdout
-        format console
-    }
-
     # https://github.com/devangels/caddy-ipfilter
     # https://www.cloudflare.com/ips/
     #ipfilter / {
@@ -115,12 +106,6 @@ http://pinky.tradingstrategy.ai {
             header_up X-Real-IP {remote_host}
         }
     }
-
-    log {
-        output stdout
-        format console
-    }
-
 }
 
 
@@ -129,11 +114,6 @@ http://candlelightdinner.tradingstrategy.ai {
 
     reverse_proxy 127.0.0.1:6543 {
         header_up X-Real-IP {remote_host}
-    }
-
-    log {
-        output stdout
-        format console
     }
 }
 
@@ -145,11 +125,6 @@ http://matilda.tradingstrategy.ai {
         header_up X-Real-IP {remote_host}
         # header_upstream X-Forwarded-Proto https
     }
-
-    log {
-        output stdout
-        format console
-    }
 }
 
 
@@ -157,11 +132,6 @@ http://matilda.tradingstrategy.ai {
 http://steve.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:3457 {
         header_up X-Real-IP {remote_host}
-    }
-
-    log {
-        output stdout
-        format console
     }
 }
 
