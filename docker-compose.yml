@@ -22,22 +22,20 @@ services:
     network_mode: host
     volumes:
       - $PWD/Caddyfile:/etc/caddy/Caddyfile
-      # - $PWD/srv:/srv
       - $PWD/data:/data
       - $PWD/data/config:/config
       - $PWD/index.html:/usr/share/caddy/index.html
-      - $PWD/logs:/var/log/caddy
+      - $PWD/logs:/var/log/caddy # shared volume with caddy
+  # Logstash logging for caddy from Json logs
   caddy-logstash:
     container_name: caddy-logstash
     image: logstash:7.5.2
     environment:
+      # elastisearch login vars
       ECS_SERVER: ${ECS_SERVER}
       ECS_USER: ${ECS_USER}
       ECS_PASSWORD: ${ECS_PASSWORD}
-    network_mode: host
     volumes:
-      - $PWD/logs:/logs
+      - $PWD/logs:/logs #shared volume
       - $PWD/data/config/logstash:/config-dir
     command: logstash -f /config-dir/logstash01.conf
-    depends_on:
-    - caddy
