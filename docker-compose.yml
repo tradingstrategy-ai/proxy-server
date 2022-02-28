@@ -38,4 +38,5 @@ services:
     volumes:
       - $PWD/logs:/logs #shared volume
       - $PWD/data/config/logstash:/config-dir
+      - $PWD/data/config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
     command: logstash -f /config-dir/logstash01.conf
