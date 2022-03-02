@@ -58,8 +58,8 @@ http://tradingstrategy.ai {
     # tail -f logs/access.log  | jq
     # but it is also consumed by logstash log forwarder
     log {
-        output file /var/log/caddy/access.log
         format json
+        output file /var/log/caddy/access.log
         #output stdout
         # Caddy cannot have two log outputs at the same time
     }
@@ -72,9 +72,9 @@ http://tradingstrategy.ai {
 #
 # Pushed from a specific branch.
 #
-# Backend - Python Waitress: 127.0.0.1:4567
 # Frontend - SvelteKit node.js adapter: 4000
-# Run in tmux on the server
+#
+# To run the SvelteKit frontend in tmux on the server see frontend/docs/staging.md
 #
 # Protected by HTTP Basic Auth, so that the website is not picked up by robots.
 # The password is not super secret.
