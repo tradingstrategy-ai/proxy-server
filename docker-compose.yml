@@ -28,15 +28,20 @@ services:
       - $PWD/logs:/var/log/caddy # shared volume with caddy
   # Logstash logging for caddy from Json logs
   caddy-logstash:
+    build:
+      context: logstash/
+      args:
+        ELK_VERSION: $ELK_VERSION
     container_name: caddy-logstash
-    image: logstash:7.5.2
+    network_mode: host
     environment:
       # elastisearch login vars
       ECS_SERVER: ${ECS_SERVER}
       ECS_USER: ${ECS_USER}
       ECS_PASSWORD: ${ECS_PASSWORD}
     volumes:
-      - $PWD/logs:/data/logs #shared volume
-      - $PWD/data/config/logstash:/config-dir
-      - $PWD/data/config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
-    command: logstash -f /config-dir/logstash01.conf
+      - ./logs:/data/logs #shared volume
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,z
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,z
+    depends_on:
+      - caddy
