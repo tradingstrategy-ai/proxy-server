@@ -72,7 +72,7 @@ http://por-que.tradingstrategy.ai {
 
     # Backend API request
     handle /api* {
-        # This is the upstream Waitress server
+        # This is the upstream Gunicorn server
         reverse_proxy 127.0.0.1:3457 {
             # Backend API must respond to an individual API call under 20 seconds
             transport http {

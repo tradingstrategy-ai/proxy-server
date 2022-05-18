@@ -133,9 +133,29 @@ Build Caddy inside Docker with:
 
 ```shell
 docker build
+
+```
+Write some crap to the port and see that it is not being closed by `nc`.
+
+# Logs
+
+Stdout logs:
+
+```
+docker-compose logs caddy
 ```
 
-Write some crap to the port and see that it is not being closed by `nc`.
+File logs (needs a big screen or small font):
+
+```
+docker-compose exec -it caddy tail -f /var/log/caddy/access.log | jq .
+```
+
+Checking for specific string in logs
+
+```shell
+docker-compose exec -it caddy tail -f /var/log/caddy/access.log | grep por-que | jq .
+```
 
 # Notes
 
