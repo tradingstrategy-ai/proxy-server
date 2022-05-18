@@ -36,6 +36,12 @@ This will a start container `caddy` that terminates all [tradingstrategy.ai](htt
 This setup does not have any development testing - all changes to tweak URL configuration must be done directly on the production server.
 You need to have `tradingstrategy.ai` override in `/etc/hosts` to test.
 
+# Restartig 
+
+```shell
+docker-compose up --force-recreate -d
+```
+
 # Testing
 
 Check URls:

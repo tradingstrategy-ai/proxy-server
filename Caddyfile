@@ -67,6 +67,20 @@ http://tradingstrategy.ai {
 
 }
 
+# New backend testing server
+http://por-que.tradingstrategy.ai {
+
+    # Backend API request
+    handle /api* {
+        # This is the upstream Waitress server
+        reverse_proxy 127.0.0.1:3457 {
+            # Backend API must respond to an individual API call under 20 seconds
+            transport http {
+                response_header_timeout 20s
+            }
+        }
+    }
+}
 
 #
 # Staging server.
@@ -133,9 +147,16 @@ http://matilda.tradingstrategy.ai {
 }
 
 
-# Integration test bacjebd server
+# Integration test backend server
 http://steve.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:3457 {
+        header_up X-Real-IP {remote_host}
+    }
+}
+
+# First test strategy server
+http://t-100.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19000 {
         header_up X-Real-IP {remote_host}
     }
 }
