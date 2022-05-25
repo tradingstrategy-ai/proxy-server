@@ -28,10 +28,7 @@ services:
       - $PWD/logs:/var/log/caddy # shared volume with caddy
   # Logstash logging for caddy from Json logs
   caddy-logstash:
-    build:
-      context: logstash/
-      args:
-        ELK_VERSION: $ELK_VERSION
+    image: logstash:8.2.0
     container_name: caddy-logstash
     network_mode: host
     environment:
@@ -39,9 +36,14 @@ services:
       ECS_SERVER: ${ECS_SERVER}
       ECS_USER: ${ECS_USER}
       ECS_PASSWORD: ${ECS_PASSWORD}
+    ports:
+      - "5044:5044"
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
     volumes:
-      - ./logs:/data/logs #shared volume
-      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,z
-      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,z
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+      - $PWD/logs:/data/logs #shared volume
     depends_on:
       - caddy
