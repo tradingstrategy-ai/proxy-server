@@ -154,11 +154,14 @@ http://steve.tradingstrategy.ai {
     }
 }
 
-# First test strategy server
+# First strategy execution test webhook
 http://t-100.tradingstrategy.ai {
-    reverse_proxy 127.0.0.1:19000 {
-        header_up X-Real-IP {remote_host}
-    }
+    reverse_proxy 127.0.0.1:19001
+}
+
+# Second strategy execution test webhook
+http://robocop.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19002
 }
 
 #
