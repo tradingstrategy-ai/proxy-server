@@ -37,13 +37,11 @@ http://tradingstrategy.ai {
 
     # Serve docs as files rsync'ed to the server
     # See trading-strategy/.github/workflows/rsync-docs.yml for more details
-    handle /docs* {
+    # https://caddy.community/t/caddy-file-server-browse-not-working-when-root-a-specific-directory/15342/3
+    handle_path /docs* {
         # See docker-compose
-        root /docs
+        root * /docs
         file_server
-        #reverse_proxy https://trading-strategy-docs.pages.dev {
-        #    header_up Host trading-strategy-docs.pages.dev
-        #}
     }
 
     # SvelteKit production server from frontend repository
