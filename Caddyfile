@@ -38,8 +38,8 @@ http://tradingstrategy.ai {
     # Serve docs produced by client repo Github Actions
     # from Netlify server
     handle /docs* {
-        reverse_proxy https://boring-poitras-17190b.netlify.app {
-            header_up Host boring-poitras-17190b.netlify.app
+        reverse_proxy https://trading-strategy-docs.pages.dev {
+            header_up Host trading-strategy-docs.pages.dev
         }
     }
 
@@ -155,11 +155,13 @@ http://steve.tradingstrategy.ai {
 }
 
 # First strategy execution test webhook
+# See trade-executor/docker-compose.yml
 http://t-100.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19001
 }
 
 # Second strategy execution test webhook
+# See trade-executor/docker-compose.yml
 http://robocop.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19002
 }
