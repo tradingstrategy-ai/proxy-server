@@ -35,12 +35,15 @@ http://tradingstrategy.ai {
         }
     }
 
-    # Serve docs produced by client repo Github Actions
-    # from Netlify server
+    # Serve docs as files rsync'ed to the server
+    # See trading-strategy/.github/workflows/rsync-docs.yml for more details
     handle /docs* {
-        reverse_proxy https://trading-strategy-docs.pages.dev {
-            header_up Host trading-strategy-docs.pages.dev
-        }
+        # See docker-compose
+        root /docs
+        file_server
+        #reverse_proxy https://trading-strategy-docs.pages.dev {
+        #    header_up Host trading-strategy-docs.pages.dev
+        #}
     }
 
     # SvelteKit production server from frontend repository
