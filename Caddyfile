@@ -57,6 +57,12 @@ http://tradingstrategy.ai {
         }
     }
 
+    # Set the default 404 page
+    # https://caddyserver.com/docs/caddyfile/directives/handle_errors
+    handle_errors {
+        respond "{http.error.status_code} {http.error.status_text}"
+    }
+
     # Create a log file.
     # This is mapped to local FS thru docker-compose, so you can read it like
     # tail -f logs/access.log  | jq
