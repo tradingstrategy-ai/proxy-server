@@ -1,4 +1,6 @@
-This is the HTTPS reserve proxy configuration for https://tradingstrategy.ai for [Caddy web server](https://caddy.community/). 
+# Description
+
+This is the HTTPS reverse proxy configuration for https://tradingstrategy.ai for [Caddy web server](https://caddy.community/).
 
 We use special `Dockerimage` to build support for
 
@@ -18,14 +20,14 @@ The purpose of this setup is search engine optimisations and better UX.
 
 * HTTPS certificates are issued by Cloudflare
 
-* The web server is configured to ignore traffic that is not from Cloudflare edge servers, 
+* The web server is configured to ignore traffic that is not from Cloudflare edge servers,
   to make it easier to manage malicious traffic
 
 * [Caddy OpenMetrics endpoint](https://caddyserver.com/docs/metrics)
 
-# Running
+## Running
 
-AT this will bind all 80 on the Docker host. HTTPS traffic is terminated by Cloudflare. 
+AT this will bind all 80 on the Docker host. HTTPS traffic is terminated by Cloudflare.
 
 ```shell
 docker-compose up -d
@@ -41,6 +43,18 @@ You need to have `tradingstrategy.ai` override in `/etc/hosts` to test.
 ```shell
 docker-compose up --force-recreate -d
 ```
+
+Caddy and caddy-logstash should be running
+
+Caddy-logstash should have the following ENV variables set:
+
+```yaml
+  ECS_SERVER: ${ECS_SERVER}
+  ECS_USER: ${ECS_USER}
+  ECS_PASSWORD: ${ECS_PASSWORD}
+```
+
+```shell
 
 # Testing
 
@@ -78,7 +92,7 @@ curl http://127.0.0.1:6000/metrics
 
 ## Datadog integration
 
-You can make [Datadog agent to read OpenMetrics](https://docs.datadoghq.com/integrations/openmetrics/) from Caddy endpoint. 
+You can make [Datadog agent to read OpenMetrics](https://docs.datadoghq.com/integrations/openmetrics/) from Caddy endpoint.
 
 On the reverse proxy host, Go to DataDog OpenMetrics plugin directory and enable OpenMetrics:
 

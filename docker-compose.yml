@@ -32,6 +32,8 @@ services:
     image: logstash:8.2.0
     container_name: caddy-logstash
     network_mode: host
+    env_file:
+      - ~/oracle.env
     environment:
       # elastisearch login vars
       ECS_SERVER: ${ECS_SERVER}
