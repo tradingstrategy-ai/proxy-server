@@ -41,6 +41,7 @@ http://tradingstrategy.ai {
     redir /docs /docs/
     handle_path /docs* {
         # See docker-compose
+        # mapped to /home/docs/html
         root * /docs
         file_server
     }
@@ -179,6 +180,13 @@ http://robocop.tradingstrategy.ai {
 http://docs.capitalgram.com {
    root * /docs
    file_server
+
+    # Set the default 404 page
+    # https://caddyserver.com/docs/caddyfile/directives/handle_errors
+    handle_errors {
+        respond "{http.error.status_code} {http.error.status_text}"
+    }
+
 }
 
 #
