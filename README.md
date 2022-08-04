@@ -25,6 +25,14 @@ The purpose of this setup is search engine optimisations and better UX.
 
 * [Caddy OpenMetrics endpoint](https://caddyserver.com/docs/metrics)
 
+## Development flow
+
+- Git checkout
+- Edit `Caddyfile` config file locally
+- Check syntax with `caddy validate --config Caddyfile`
+- Sync `Caddyfile` to server
+- Restart the production Docker
+
 ## Running
 
 AT this will bind all 80 on the Docker host. HTTPS traffic is terminated by Cloudflare.
