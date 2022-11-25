@@ -176,6 +176,16 @@ http://robocop.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19002
 }
 
+#
+# pancake-eth-usd-sma trade executor
+#
+# See https://tradingstrategy.ai/docs for details.
+# Internal 19003 port is set in docker-compose.yml
+#
+http://pancake-eth-usd-sma.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19003
+}
+
 # docs.capitalgram.com migration in Google Search Console
 http://docs.capitalgram.com {
    root * /docs
