@@ -186,9 +186,25 @@ http://pancake-eth-usd-sma.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19003
 }
 
+
+# trader-joe-avax-usd-ema trade executor
+#
+# See https://tradingstrategy.ai/docs for details.
+# Internal 19004 port is set in docker-compose.yml
+
 http://trader-joe-avax-usd-ema.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19004
 }
+
+# quickswap-matic-usd-ema-final trade executor
+#
+# See https://tradingstrategy.ai/docs for details.
+# Internal 19005 port is set in docker-compose.yml
+
+http://quickswap-matic-usd-ema-final.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19005
+}
+
 
 # docs.capitalgram.com migration in Google Search Console
 http://docs.capitalgram.com {
