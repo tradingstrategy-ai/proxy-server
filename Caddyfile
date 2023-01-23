@@ -35,18 +35,6 @@ http://tradingstrategy.ai {
         }
     }
 
-    # Backend API request,
-    # Special for bots for sitemap endpoints
-    handle /sitemap* {
-        # This is the upstream Waitress server
-        reverse_proxy 127.0.0.1:3456 {
-            # Backend API must respond to an individual API call under 120s seconds
-            transport http {
-                response_header_timeout 120s
-            }
-        }
-    }
-
     # Serve docs as files rsync'ed to the server
     # See trading-strategy/.github/workflows/rsync-docs.yml for more details
     # https://caddy.community/t/caddy-file-server-browse-not-working-when-root-a-specific-directory/15342/3
