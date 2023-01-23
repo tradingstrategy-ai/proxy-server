@@ -38,6 +38,7 @@ The purpose of this setup is search engine optimisations and better UX.
 AT this will bind all 80 on the Docker host. HTTPS traffic is terminated by Cloudflare.
 
 ```shell
+# Start the service
 docker-compose up -d
 ```
 
@@ -46,9 +47,14 @@ This will a start container `caddy` that terminates all [tradingstrategy.ai](htt
 This setup does not have any development testing - all changes to tweak URL configuration must be done directly on the production server.
 You need to have `tradingstrategy.ai` override in `/etc/hosts` to test.
 
-# Restarting Caddy on production
+# Restarting Caddy on production and makign config changes
+
+Get an updated `Caddyfile` and then run
 
 ```shell
+# Use caddy validate from Docker image to validate our config file
+docker run -v ${PWD}/Caddyfile:/tmp/Caddyfile caddy:v2.4.5 caddy validate --config /tmp/Caddyfile
+
 docker-compose up --force-recreate -d
 ```
 

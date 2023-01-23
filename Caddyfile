@@ -35,6 +35,15 @@ http://tradingstrategy.ai {
         }
     }
 
+    # Special URL endpoint for Google and other bots
+    # that are robots.txt blocked from API
+    handle_path /sitemap/* {
+        # Same as /api, just a path rewrite using Caddy handle_path
+        # https://webinstall.dev/caddy/
+        rewrite * /api{path}
+        reverse_proxy 127.0.0.1:3456
+    }
+
     # Serve docs as files rsync'ed to the server
     # See trading-strategy/.github/workflows/rsync-docs.yml for more details
     # https://caddy.community/t/caddy-file-server-browse-not-working-when-root-a-specific-directory/15342/3
