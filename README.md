@@ -92,10 +92,18 @@ Ready Caddy logs real time:
 tail -f logs/access.log
 ```
 
-Reading logs using `jq` ([See blog post](https://caddy.community/t/making-caddy-logs-more-readable/7565)):
+Reading logs using `jq` ([See blog post](https://caddy.community/t/making-caddy-logs-more-readable/7565)).
+This will show status code, URL, IP address as a tail follow.
 
 ```shell
-tail -f logs/access.log | jq '.request.uri, .request.remote_addr
+tail -f logs/access.log | jq '[.status, .request.remote_addr, .request.uri] | join(" ")'
+```
+
+```
+"200 x:61170 /api/xyliquidity?pair_id=60282&time_bucket=1d"
+"200 x:22642 /api/pair-details?chain_slug=ethereum&exchange_slug=uniswap-v2&pair_slug=akeno-eth"
+"200 x:20432 /api/xyliquidity?pair_id=60291&time_bucket=1d"
+"200 x:45076 /api/pair-details?chain_
 ```
 
 # Metrics

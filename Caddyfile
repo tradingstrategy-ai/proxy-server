@@ -28,9 +28,9 @@ http://tradingstrategy.ai {
     handle /api* {
         # This is the upstream Waitress server
         reverse_proxy 127.0.0.1:3456 {
-            # Backend API must respond to an individual API call under 120s seconds
+            # Backend API must respond to an individual API call under 20s seconds
             transport http {
-                response_header_timeout 120s
+                response_header_timeout 20s
             }
         }
     }
