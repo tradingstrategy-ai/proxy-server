@@ -86,10 +86,16 @@ Manually checking error counts:
 curl http://127.0.0.1:6000/metrics|grep -i error
 ```
 
-Manually following logs:
+Ready Caddy logs real time:
 
 ```shell
-docker logs -f caddy
+tail -f logs/access.log
+```
+
+Reading logs using `jq` ([See blog post](https://caddy.community/t/making-caddy-logs-more-readable/7565)):
+
+```shell
+tail -f logs/access.log | jq '.request.uri, .request.remote_addr
 ```
 
 # Metrics
