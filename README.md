@@ -98,13 +98,20 @@ This will show status code, URL, IP address as a tail follow.
 ```shell
 tail -f logs/access.log | jq '[.status, .request.remote_addr, .request.uri] | join(" ")'
 ```
-
 ```
 "200 x:61170 /api/xyliquidity?pair_id=60282&time_bucket=1d"
 "200 x:22642 /api/pair-details?chain_slug=ethereum&exchange_slug=uniswap-v2&pair_slug=akeno-eth"
 "200 x:20432 /api/xyliquidity?pair_id=60291&time_bucket=1d"
 "200 x:45076 /api/pair-details?chain_
 ```
+
+With CloudFlare country and Ray ID information: 
+
+```shell
+tail -f logs/access.log | jq '[.status, .request.headers["Cf-Connecting-Ip"][0], .request.headers["Cf-Ipcountry"][0], .request.headers["Cf-Ray"][0], .request.uri ] | join(" ")'
+```
+
+Note that `jq` matching is case-sensitive.
 
 # Metrics
 
