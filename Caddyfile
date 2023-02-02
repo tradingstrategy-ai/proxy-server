@@ -173,18 +173,6 @@ http://steve.tradingstrategy.ai {
     }
 }
 
-# First strategy execution test webhook
-# See trade-executor/docker-compose.yml
-http://t-100.tradingstrategy.ai {
-    reverse_proxy 127.0.0.1:19001
-}
-
-# Second strategy execution test webhook
-# See trade-executor/docker-compose.yml
-http://robocop.tradingstrategy.ai {
-    reverse_proxy 127.0.0.1:19002
-}
-
 #
 # pancake-eth-usd-sma trade executor
 #

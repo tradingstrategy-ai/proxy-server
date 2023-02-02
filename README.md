@@ -103,7 +103,7 @@ tail -f logs/access.log | jq '[.status, .request.remote_addr, .request.uri] | jo
 "200 x:22642 /api/pair-details?chain_slug=ethereum&exchange_slug=uniswap-v2&pair_slug=akeno-eth"
 "200 x:20432 /api/xyliquidity?pair_id=60291&time_bucket=1d"
 "200 x:45076 /api/pair-details?chain_
-```
+``` 
 
 With CloudFlare country and Ray ID information: 
 
@@ -112,6 +112,16 @@ tail -f logs/access.log | jq '[.status, .request.headers["Cf-Connecting-Ip"][0],
 ```
 
 Note that `jq` matching is case-sensitive.
+
+Then tailing page load requests only (no backend `/api` calls):
+
+```shell
+tail -f logs/access.log | jq --unbuffered -r '[.status, .request.headers["Cf-Connecting-Ip"][0], .request.headers["Cf-Ipcountry"][0], .request.headers["Cf-Ray"][0], .request.uri ] | join(" ")' | grep -v api
+```
+
+Showing error URLs (HTTP 500+):
+
+cat logs/access.log | jq 'select(.status >= 500) | [.status, .request.host, .request.uri ] | join(" ")' 
 
 # Metrics
 
