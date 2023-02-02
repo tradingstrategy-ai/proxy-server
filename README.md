@@ -121,7 +121,9 @@ tail -f logs/access.log | jq --unbuffered -r '[.status, .request.headers["Cf-Con
 
 Showing error URLs (HTTP 500+):
 
+```shell
 cat logs/access.log | jq 'select(.status >= 500) | [.status, .request.host, .request.uri ] | join(" ")' 
+```
 
 # Metrics
 
