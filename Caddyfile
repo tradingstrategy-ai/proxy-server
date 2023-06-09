@@ -202,9 +202,6 @@ http://enzyme-polygon-eth-usdc.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19006
 }
 
-http://enzyme-polygon-eth-usdc.tradingstrategy.ai {
-    reverse_proxy 127.0.0.1:19006
-}
 http://enzyme-polygon-multipair.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19007
 }
