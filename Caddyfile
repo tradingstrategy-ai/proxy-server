@@ -202,6 +202,20 @@ http://enzyme-polygon-eth-usdc.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19006
 }
 
+http://enzyme-polygon-eth-usdc.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19006
+}
+http://enzyme-polygon-multipair.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19007
+}
+
+http://enzyme-polygon-matic-usdc.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19008
+}
+
+http://enzyme-polygon-eth-long-strength.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19009
+}
 
 # docs.capitalgram.com migration in Google Search Console
 http://docs.capitalgram.com {
