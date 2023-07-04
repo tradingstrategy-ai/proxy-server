@@ -47,7 +47,7 @@ This will a start container `caddy` that terminates all [tradingstrategy.ai](htt
 This setup does not have any development testing - all changes to tweak URL configuration must be done directly on the production server.
 You need to have `tradingstrategy.ai` override in `/etc/hosts` to test.
 
-# Restarting Caddy on production and makign config changes
+# Restarting Caddy on production and making config changes
 
 Get an updated `Caddyfile` and then run
 
@@ -216,6 +216,18 @@ Checking for specific string in logs
 
 ```shell
 docker-compose exec -it caddy tail -f /var/log/caddy/access.log | grep por-que | jq .
+```
+
+[Displaying custom fields](https://caddy.community/t/making-caddy-logs-more-readable/7565/14):
+
+```shell
+docker-compose exec -it caddy tail -f /var/log/caddy/access.log | jq '[.status, .request.remote_addr, .request.uri] | join(" ")'
+```
+
+[Checking 500s](https://caddy.community/t/making-caddy-logs-more-readable/7565/17):
+
+```shell
+docker-compose exec -it caddy tail -f /var/log/caddy/access.log | | jq 'select(.status >= 500) | [.status, .request.host, .request.uri ] | join(" ")'
 ```
 
 # Notes
