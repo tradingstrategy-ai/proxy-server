@@ -214,6 +214,10 @@ http://enzyme-polygon-eth-long-strength.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19009
 }
 
+http://polygon-eth-spot-short.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19011
+}
+
 # docs.capitalgram.com migration in Google Search Console
 http://docs.capitalgram.com {
    root * /docs
