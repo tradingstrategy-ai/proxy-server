@@ -210,8 +210,12 @@ http://enzyme-polygon-matic-usdc.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19008
 }
 
-http://enzyme-polygon-eth-long-strength.tradingstrategy.ai {
+http://enzyme-polygon-eth-usdc-sls.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19009
+}
+
+http://polygon-multipair-momentum.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19010
 }
 
 http://polygon-eth-spot-short.tradingstrategy.ai {
