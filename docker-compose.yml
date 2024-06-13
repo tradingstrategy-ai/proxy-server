@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
-    command: caddy run -config /etc/caddy/Caddyfile
+    command: caddy run --config /etc/caddy/Caddyfile
     environment:
       ACME_AGREE: "true"
     # We directly bind to the host ports and there is no Docker network here
@@ -26,7 +26,7 @@ services:
       - $PWD/data/config:/config
       - $PWD/index.html:/usr/share/caddy/index.html
       - $PWD/logs:/var/log/caddy # shared volume with caddy
-      #- /home/docs/html:/docs  # For docs static hosting
+      - /home/docs/html:/docs  # For docs static hosting
   # Logstash logging for caddy from Json logs
   caddy-logstash:
     image: logstash:8.2.0
