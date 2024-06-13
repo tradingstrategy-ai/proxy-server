@@ -26,7 +26,7 @@ services:
       - $PWD/data/config:/config
       - $PWD/index.html:/usr/share/caddy/index.html
       - $PWD/logs:/var/log/caddy # shared volume with caddy
-      - /home/docs/html:/docs  # For docs static hosting
+      #- /home/docs/html:/docs  # For docs static hosting
   # Logstash logging for caddy from Json logs
   caddy-logstash:
     image: logstash:8.2.0

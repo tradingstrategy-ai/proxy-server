@@ -53,7 +53,7 @@ Get an updated `Caddyfile` and then run
 
 ```shell
 # Use caddy validate from Docker image to validate our config file
-docker run -v ${PWD}/Caddyfile:/tmp/Caddyfile caddy:v2.4.5 caddy validate --config /tmp/Caddyfile
+docker-compose run -v ${PWD}/Caddyfile:/tmp/Caddyfile caddy caddy validate --config /tmp/Caddyfile
 
 docker-compose up --force-recreate -d
 ```
