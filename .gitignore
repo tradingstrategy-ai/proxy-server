@@ -2,3 +2,4 @@ data/lib/.lock
 data/lib/uuid
 data/lib/plugins/inputs/file/.sincedb_5339383a65678b95c742355680a1b42a
 data/lib/plugins/inputs/file/.sincedb_0b294b44fcfc5c85fdaa8b668c14efa5
+logs/*
