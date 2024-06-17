@@ -30,11 +30,12 @@ http://tradingstrategy.ai {
     # Backend API request
     handle /api* {
 
-        # Rate limit /API end point to 20 requets a minute
+        # Rate limit /API end point to XX requets a minute
         rate_limit {
             window 1m
-            events 20
-	}
+            events 60
+	    }
+
         # This is the upstream Waitress server
         reverse_proxy 127.0.0.1:3456 {
             # Backend API must respond to an individual API call under 20s seconds
