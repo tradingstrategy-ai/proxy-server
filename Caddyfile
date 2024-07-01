@@ -242,6 +242,12 @@ http://arbitrum-btc-breakout.tradingstrategy.ai {
 }
 
 
+# arbitrum-btc-eth-stoch-rsi strategy - Alex
+http://arbitrum-btc-eth-stoch-rsi.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19015
+}
+
+
 # docs.capitalgram.com migration in Google Search Console
 http://docs.capitalgram.com {
    root * /docs
