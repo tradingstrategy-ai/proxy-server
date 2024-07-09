@@ -247,6 +247,19 @@ http://arbitrum-btc-eth-stoch-rsi.tradingstrategy.ai {
     reverse_proxy 127.0.0.1:19015
 }
 
+# enzyme-polygon-stoch-rsi strategy - Alex
+http://enzyme-polygon-stoch-rsi.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19016
+}
+
+
+# enzyme-ethereum-stoch-rsi strategy - Alex
+http://enzyme-ethereum-stoch-rsi.tradingstrategy.ai {
+    reverse_proxy 127.0.0.1:19017
+}
+
+
+
 
 # docs.capitalgram.com migration in Google Search Console
 http://docs.capitalgram.com {
