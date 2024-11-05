@@ -45,8 +45,9 @@ services:
       - "5000:5000/udp"
       - "9600:9600"
     volumes:
-      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
-      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+      - ./logstash/certs:/usr/share/logstash/certs
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:Z
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:Z
       - $PWD/logs:/data/logs #shared volume
     depends_on:
       - caddy
