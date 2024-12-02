@@ -20,12 +20,16 @@
 }
 
 #
-# Production frontend and backend and docs
+# Shared snippet for frontend deployments
 #
-# PYramid backend API server is localhost:3456
-# SvelteKit Node.js frontend SSR server is localhost:3000
+# Accepts single argument:
+# - port where SvelteKit node.js server is running
 #
-http://tradingstrategy.ai {
+# /api requests are proxied to backend service on port 3456
+# /docs requests are served from /docs static files
+#
+(frontend) {
+    vars frontend_port {args.0}
 
     # Backend API request
     handle /api* {
@@ -68,7 +72,7 @@ http://tradingstrategy.ai {
 
     # SvelteKit production server from frontend repository
     handle {
-        reverse_proxy 127.0.0.1:3000 {
+        reverse_proxy 127.0.0.1:{vars.frontend_port} {
         header_up X-Forwarded-Host {host}
             # Frontend must render the page under 20 seconds
             transport http {
@@ -94,6 +98,16 @@ http://tradingstrategy.ai {
         # Caddy cannot have two log outputs at the same time
     }
 
+}
+
+# Main frontend site (port 3000)
+http://tradingstrategy.ai {
+    import frontend 3000
+}
+
+# Strategy microsite frontend instance (port 3001)
+http://strategy-microsite.tradingstrategy.ai {
+    import frontend 3001
 }
 
 # New backend testing server
