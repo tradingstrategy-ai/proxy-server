@@ -29,7 +29,7 @@
 # /docs requests are served from /docs static files
 #
 (frontend) {
-    vars frontend_port {args.0}
+    vars frontend_port {args[0]}
 
     # Backend API request
     handle /api* {
