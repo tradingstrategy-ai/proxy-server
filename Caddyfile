@@ -106,7 +106,7 @@ http://tradingstrategy.ai {
 }
 
 # Strategy microsite frontend instance (port 3001)
-http://strategy-microsite.tradingstrategy.ai {
+http://memecoin-index.tradingstrategy.ai {
     import frontend 3001
 }
 
