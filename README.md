@@ -37,11 +37,6 @@ The purpose of this setup is search engine optimisations and better UX.
 
 AT this will bind all 80 on the Docker host. HTTPS traffic is terminated by Cloudflare.
 
-```shell
-# Start the service
-docker-compose up -d
-```
-
 This will a start container `caddy` that terminates all [tradingstrategy.ai](https://tradingstrategy.ai) web traffic.
 
 This setup does not have any development testing - all changes to tweak URL configuration must be done directly on the production server.
