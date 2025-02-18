@@ -37,7 +37,7 @@
         # Rate limit /API end point to XX requets a minute
         rate_limit {
             window 1m
-            events 150
+            events 200
 	    }
 
         # This is the upstream Waitress server
