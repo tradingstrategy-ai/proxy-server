@@ -44,8 +44,9 @@
         reverse_proxy 127.0.0.1:3456 {
             # Backend API must respond to an individual API call under 20s seconds
             transport http {
-                # Increase 20s -> 90s for /top endpoint
-                response_header_timeout 90s
+                # Increased timeout for 240s for /tvl endpoint
+                # prefilter(min_tvl) is problematic
+                response_header_timeout 240s
             }
         }
     }
