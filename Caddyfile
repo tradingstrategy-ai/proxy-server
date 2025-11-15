@@ -75,7 +75,8 @@
     # SvelteKit production server from frontend repository
     handle {
         reverse_proxy 127.0.0.1:{vars.frontend_port} {
-        header_up X-Forwarded-Host {host}
+            header_up X-Forwarded-Proto https
+
             # Frontend must render the page under 20 seconds
             transport http {
                 response_header_timeout 20s
