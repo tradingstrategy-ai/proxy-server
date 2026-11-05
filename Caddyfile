@@ -60,6 +60,11 @@
         reverse_proxy 127.0.0.1:3456
     }
 
+    # Recover documentation assets requested without the /docs prefix.
+    # Preserve query strings (including Sphinx asset digests) and redirect before
+    # these requests reach SvelteKit, where they would be logged as 404s.
+    redir /_static/* /docs{uri} 302
+
     # Serve docs as files rsync'ed to the server
     # See trading-strategy/.github/workflows/rsync-docs.yml for more details
     # https://caddy.community/t/caddy-file-server-browse-not-working-when-root-a-specific-directory/15342/3
